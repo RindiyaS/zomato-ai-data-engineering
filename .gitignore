@@ -1,0 +1,30 @@
+# Secrets
+.env
+*.env
+!example.env
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Airflow
+airflow/logs/
+airflow/airflow.db
+
+# dbt
+zomato/target/
+zomato/dbt_packages/
+zomato/logs/
+zomato/.user.yml
+
+# Data
+data/
+
+# Generated files
+ai/review_embeddings.parquet
+
+# OS / IDE
+.DS_Store
+.vscode/

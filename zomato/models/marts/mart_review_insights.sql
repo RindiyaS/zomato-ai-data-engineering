@@ -1,5 +1,5 @@
 {{ config(tags=['ai'])}}
-
+git --version
 select 
 rr.city,
 e.topic,

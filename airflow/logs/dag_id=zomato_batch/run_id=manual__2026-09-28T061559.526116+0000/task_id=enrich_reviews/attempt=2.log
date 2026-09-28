@@ -1,1 +1,0 @@
-{"timestamp":"2026-09-28T06:33:02.678023","level":"info","event":"DAG bundles loaded: dags-folder","logger":"airflow.dag_processing.bundles.manager.DagBundlesManager"}
