@@ -1,0 +1,13 @@
+zomato:
+  outputs:
+    dev:
+      account: XOFJGDS-PH36867
+      database: ZOMATO
+      password: 2Cd8nZr7Gn8kBgp
+      role: DBT_ROLE
+      schema: STAGING
+      threads: 8
+      type: snowflake
+      user: DIYA
+      warehouse: ZOMATO_WH
+  target: dev

@@ -1,0 +1,23 @@
+{"timestamp":"2026-09-28T06:24:46.420168","level":"info","event":"DAG bundles loaded: dags-folder","logger":"airflow.dag_processing.bundles.manager.DagBundlesManager"}
+{"timestamp":"2026-09-28T06:24:46.422346","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/zomato_batch.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2026-09-28T06:24:49.778766","level":"info","event":"Tmp dir root location: /tmp","logger":"airflow.task.hooks.airflow.providers.standard.hooks.subprocess.SubprocessHook"}
+{"timestamp":"2026-09-28T06:24:49.780677","level":"info","event":"Running command: ['/usr/bin/bash', '-c', 'python /opt/airflow/ai/enrich_reviews.py']","logger":"airflow.task.hooks.airflow.providers.standard.hooks.subprocess.SubprocessHook"}
+{"timestamp":"2026-09-28T06:24:49.828228","level":"info","event":"Output:","logger":"airflow.task.hooks.airflow.providers.standard.hooks.subprocess.SubprocessHook"}
+{"timestamp":"2026-09-28T06:29:19.196406","level":"info","event":"Connecting to Snowflake...","logger":"airflow.task.hooks.airflow.providers.standard.hooks.subprocess.SubprocessHook"}
+{"timestamp":"2026-09-28T06:29:19.197027","level":"info","event":"Enriching 50 reviews using Gemini gemini-3.5-flash-lite...","logger":"airflow.task.hooks.airflow.providers.standard.hooks.subprocess.SubprocessHook"}
+{"timestamp":"2026-09-28T06:29:19.197226","level":"info","event":"","logger":"airflow.task.hooks.airflow.providers.standard.hooks.subprocess.SubprocessHook"}
+{"timestamp":"2026-09-28T06:29:19.197292","level":"info","event":"Classifying review 46: Fine, would maybe order again.","logger":"airflow.task.hooks.airflow.providers.standard.hooks.subprocess.SubprocessHook"}
+{"timestamp":"2026-09-28T06:29:19.335822","level":"info","event":"Labels: {'sentiment_label': 'neutral', 'sentiment_score': 0.0, 'topic': 'other', 'key_issue': None}","logger":"airflow.task.hooks.airflow.providers.standard.hooks.subprocess.SubprocessHook"}
+{"timestamp":"2026-09-28T06:29:19.336326","level":"info","event":"","logger":"airflow.task.hooks.airflow.providers.standard.hooks.subprocess.SubprocessHook"}
+{"timestamp":"2026-09-28T06:29:19.336515","level":"info","event":"Classifying review 47: Totally worth every rupee.","logger":"airflow.task.hooks.airflow.providers.standard.hooks.subprocess.SubprocessHook"}
+{"timestamp":"2026-09-28T06:29:19.336682","level":"info","event":"Labels: {'sentiment_label': 'positive', 'sentiment_score': 0.9, 'topic': 'pricing', 'key_issue': None}","logger":"airflow.task.hooks.airflow.providers.standard.hooks.subprocess.SubprocessHook"}
+{"timestamp":"2026-09-28T06:29:19.336842","level":"info","event":"","logger":"airflow.task.hooks.airflow.providers.standard.hooks.subprocess.SubprocessHook"}
+{"timestamp":"2026-09-28T06:29:19.337108","level":"info","event":"Classifying review 48: One of the best meals i've ordered.","logger":"airflow.task.hooks.airflow.providers.standard.hooks.subprocess.SubprocessHook"}
+{"timestamp":"2026-09-28T06:29:19.337250","level":"info","event":"Labels: {'sentiment_label': 'positive', 'sentiment_score': 0.9, 'topic': 'food quality', 'key_issue': None}","logger":"airflow.task.hooks.airflow.providers.standard.hooks.subprocess.SubprocessHook"}
+{"timestamp":"2026-09-28T06:29:19.337500","level":"info","event":"","logger":"airflow.task.hooks.airflow.providers.standard.hooks.subprocess.SubprocessHook"}
+{"timestamp":"2026-09-28T06:29:19.337677","level":"info","event":"Classifying review 49: Great eco-friendly packaging.","logger":"airflow.task.hooks.airflow.providers.standard.hooks.subprocess.SubprocessHook"}
+{"timestamp":"2026-09-28T06:29:19.337825","level":"info","event":"Labels: {'sentiment_label': 'positive', 'sentiment_score': 0.8, 'topic': 'packaging', 'key_issue': None}","logger":"airflow.task.hooks.airflow.providers.standard.hooks.subprocess.SubprocessHook"}
+{"timestamp":"2026-09-28T06:29:19.337950","level":"info","event":"","logger":"airflow.task.hooks.airflow.providers.standard.hooks.subprocess.SubprocessHook"}
+{"timestamp":"2026-09-28T06:29:19.338090","level":"info","event":"Classifying review 50: Got the wrong order entirely. Oily, stale and tasteless.","logger":"airflow.task.hooks.airflow.providers.standard.hooks.subprocess.SubprocessHook"}
+{"timestamp":"2026-09-28T06:29:19.338241","level":"info","event":"Labels: {'sentiment_label': 'negative', 'sentiment_score': -0.9, 'topic': 'food quality', 'key_issue': 'Wrong and stale order received'}","logger":"airflow.task.hooks.airflow.providers.standard.hooks.subprocess.SubprocessHook"}
+{"timestamp":"2026-09-28T06:29:19.338383","level":"info","event":"","logger":"airflow.task.hooks.airflow.providers.standard.hooks.subprocess.SubprocessHook"}

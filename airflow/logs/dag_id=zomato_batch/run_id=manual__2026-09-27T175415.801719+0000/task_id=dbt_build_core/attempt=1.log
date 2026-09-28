@@ -1,0 +1,7 @@
+{"timestamp":"2026-09-27T17:59:44.811865","level":"info","event":"DAG bundles loaded: dags-folder","logger":"airflow.dag_processing.bundles.manager.DagBundlesManager"}
+{"timestamp":"2026-09-27T17:59:44.815970","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/zomato_batch.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2026-09-27T17:59:45.094550","level":"info","event":"Tmp dir root location: /tmp","logger":"airflow.task.hooks.airflow.providers.standard.hooks.subprocess.SubprocessHook"}
+{"timestamp":"2026-09-27T17:59:45.097469","level":"info","event":"Running command: ['/usr/bin/bash', '-c', '/opt/airflow/dbt_venv/bin/dbt build --exclude tag:ai --project-dir /opt/airflow/dbt/zomato --profiles-dir /opt/airflow/dbt/zomato']","logger":"airflow.task.hooks.airflow.providers.standard.hooks.subprocess.SubprocessHook"}
+{"timestamp":"2026-09-27T17:59:45.129701","level":"info","event":"Output:","logger":"airflow.task.hooks.airflow.providers.standard.hooks.subprocess.SubprocessHook"}
+{"timestamp":"2026-09-27T18:04:13.606652","level":"info","event":"\u001b[0m18:04:13  Running with dbt=1.12.5","logger":"airflow.task.hooks.airflow.providers.standard.hooks.subprocess.SubprocessHook"}
+{"timestamp":"2026-09-27T18:04:50.099436","level":"info","event":"\u001b[0m18:04:50  Registered adapter: snowflake=1.8.4","logger":"airflow.task.hooks.airflow.providers.standard.hooks.subprocess.SubprocessHook"}
