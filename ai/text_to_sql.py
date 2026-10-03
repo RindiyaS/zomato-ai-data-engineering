@@ -128,8 +128,6 @@ if "last_question" not in st.session_state:
 if "query_executed" not in st.session_state:
     st.session_state.query_executed = False
 
-# New:
-# Used to place sidebar example question into the question box
 if "selected_example" not in st.session_state:
     st.session_state.selected_example = ""
 
@@ -567,6 +565,55 @@ def is_safe_sql(sql):
 
 
 # ============================================================
+# MAKE COLUMN NAMES UNIQUE
+# ============================================================
+
+def make_unique_columns(df):
+
+    """
+    Streamlit/PyArrow requires unique DataFrame column names.
+
+    Example:
+
+    TOTAL_GMV
+    TOTAL_GMV
+
+    becomes:
+
+    TOTAL_GMV
+    TOTAL_GMV_2
+    """
+
+    columns = []
+
+    column_counts = {}
+
+    for column in df.columns:
+
+        column = str(column)
+
+        if column not in column_counts:
+
+            column_counts[column] = 1
+
+            columns.append(column)
+
+        else:
+
+            column_counts[column] += 1
+
+            new_column = (
+                f"{column}_{column_counts[column]}"
+            )
+
+            columns.append(new_column)
+
+    df.columns = columns
+
+    return df
+
+
+# ============================================================
 # EXECUTE SQL
 # ============================================================
 
@@ -582,6 +629,11 @@ def execute_query(sql):
             sql,
             conn
         )
+
+        # IMPORTANT:
+        # Prevent duplicate column names from
+        # breaking Streamlit/PyArrow.
+        df = make_unique_columns(df)
 
         return df
 
@@ -767,6 +819,11 @@ if run_button:
         drop=True
     )
 
+    # IMPORTANT:
+    # Make sure column names are still unique
+    # after cleaning.
+    df = make_unique_columns(df)
+
 
     # --------------------------------------------------------
     # SAVE RESULT
@@ -928,7 +985,7 @@ if show_result:
         st.dataframe(
             df,
 
-            use_container_width=True,
+            width="stretch",
 
             hide_index=True
         )
@@ -1076,20 +1133,30 @@ if show_result:
 
             with c4:
 
+                # Safe slider values
+                row_count = len(df)
+
+                max_slider_value = max(
+                    1,
+                    min(
+                        100,
+                        row_count
+                    )
+                )
+
+                default_slider_value = min(
+                    10,
+                    max_slider_value
+                )
+
                 max_rows = st.slider(
                     "🔝 Show Top N",
 
                     min_value=1,
 
-                    max_value=min(
-                        100,
-                        len(df)
-                    ),
+                    max_value=max_slider_value,
 
-                    value=min(
-                        10,
-                        len(df)
-                    ),
+                    value=default_slider_value,
 
                     key="max_rows"
                 )
@@ -1144,9 +1211,14 @@ if show_result:
             if show_percentage:
 
                 total = (
-                    chart_df[
-                        y_column
-                    ].sum()
+                    pd.to_numeric(
+                        chart_df[
+                            y_column
+                        ],
+                        errors="coerce"
+                    )
+                    .fillna(0)
+                    .sum()
                 )
 
                 if total != 0:
@@ -1154,9 +1226,13 @@ if show_result:
                     chart_df[
                         "_percentage"
                     ] = (
-                        chart_df[
-                            y_column
-                        ]
+                        pd.to_numeric(
+                            chart_df[
+                                y_column
+                            ],
+                            errors="coerce"
+                        )
+                        .fillna(0)
                         / total
                         * 100
                     )
@@ -1165,7 +1241,7 @@ if show_result:
 
                     chart_df[
                         "_percentage"
-                    ] = 0
+                    ] = 0.0
 
 
             # =================================================
@@ -1381,7 +1457,7 @@ if show_result:
             st.plotly_chart(
                 fig,
 
-                use_container_width=True,
+                width="stretch",
 
                 key="main_chart"
             )
@@ -1393,35 +1469,39 @@ if show_result:
 
             if show_percentage:
 
-                percentage_df = chart_df[
-                    [
-                        x_column,
-                        y_column,
-                        "_percentage"
-                    ]
-                ].copy()
+                # IMPORTANT:
+                # Build this DataFrame explicitly with
+                # unique column names.
+                #
+                # This avoids the PyArrow error:
+                # Duplicate column names found
 
+                percentage_df = pd.DataFrame()
 
-                percentage_df = (
-                    percentage_df
-                    .rename(
-                        columns={
-                            "_percentage":
-                            "Percentage"
-                        }
-                    )
-                )
+                percentage_df[
+                    str(x_column)
+                ] = chart_df[
+                    x_column
+                ].values
 
+                percentage_df[
+                    str(y_column)
+                ] = chart_df[
+                    y_column
+                ].values
 
                 percentage_df[
                     "Percentage"
-                ] = (
-                    percentage_df[
-                        "Percentage"
-                    ]
-                    .round(2)
-                )
+                ] = chart_df[
+                    "_percentage"
+                ].round(2).values
 
+                # Final safety check
+                percentage_df = (
+                    make_unique_columns(
+                        percentage_df
+                    )
+                )
 
                 with st.expander(
                     "📊 Percentage Breakdown"
@@ -1430,7 +1510,7 @@ if show_result:
                     st.dataframe(
                         percentage_df,
 
-                        use_container_width=True,
+                        width="stretch",
 
                         hide_index=True
                     )
@@ -1458,3 +1538,4 @@ st.caption(
     "🍽️ Zomato AI Analytics • "
     "Gemini + Snowflake + Streamlit + Plotly"
 )
+
