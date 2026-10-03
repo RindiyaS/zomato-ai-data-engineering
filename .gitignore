@@ -28,3 +28,4 @@ ai/review_embeddings.parquet
 # OS / IDE
 .DS_Store
 .vscode/
+.Creds
