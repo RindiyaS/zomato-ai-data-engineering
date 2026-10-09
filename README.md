@@ -5,7 +5,8 @@
 An end-to-end data engineering and AI analytics platform that processes Zomato food delivery data using Amazon S3, Snowflake, dbt, and Apache Airflow. The project implements a Medallion Architecture to transform raw data into analytics-ready datasets and integrates OpenAI-powered review enrichment, RAG-based review analytics, and text-to-SQL. Interactive dashboards and AI features are delivered through Streamlit, with the pipeline containerized using Docker Compose.
 
 ## Architecture
-![Zomato AI Data Pipeline](./YouTube%20Trending%20Data%20Pipeline%20Architecture.png)
+
+![AI-Powered Food Delivery Analytics Platform](./Zomato%20AI%20Data%20Engineering%20Architecture.png)
 
 ## Data Flow
 
