@@ -5,49 +5,7 @@
 An end-to-end data engineering and AI analytics platform that processes Zomato food delivery data using Amazon S3, Snowflake, dbt, and Apache Airflow. The project implements a Medallion Architecture to transform raw data into analytics-ready datasets and integrates OpenAI-powered review enrichment, RAG-based review analytics, and text-to-SQL. Interactive dashboards and AI features are delivered through Streamlit, with the pipeline containerized using Docker Compose.
 
 ## Architecture
-
-```mermaid
-flowchart TD
-    A["Zomato / Food Delivery Dataset"] --> B["Amazon S3<br/>Data Lake"]
-    B --> C["Snowflake<br/>Storage Integration & Data Loading"]
-
-    subgraph D["Medallion Architecture — dbt"]
-        C --> E["Bronze / RAW<br/>Source Data"]
-        E --> F["Silver / STAGING<br/>Cleaned & Standardized Data"]
-        F --> G["Gold / MARTS<br/>Analytics-Ready Models"]
-    end
-
-    H["Apache Airflow<br/>Daily DAG"] -. "Orchestrates workflow" .-> C
-    H -.-> E
-    H -.-> F
-    H -.-> G
-
-    subgraph I["AI-Powered Analytics — OpenAI API"]
-        G --> J["LLM Review Enrichment"]
-        G --> K["RAG-Based Review Analytics"]
-        G --> L["Text-to-SQL"]
-    end
-
-    G --> M["Streamlit Dashboard"]
-    J --> M
-    K --> M
-    L --> M
-
-    N["Docker Compose"] -. "Runs containerized services" .-> H
-    N -.-> M
-
-    classDef source fill:#e8f1ff,stroke:#3973ac,color:#172b4d
-    classDef storage fill:#fff0d9,stroke:#cc8b28,color:#4d3210
-    classDef transform fill:#e3f5e8,stroke:#328653,color:#153d26
-    classDef ai fill:#f0e7ff,stroke:#8054b8,color:#35204f
-    classDef app fill:#e4f7f7,stroke:#298888,color:#143f3f
-
-    class A source
-    class B,C storage
-    class E,F,G transform
-    class J,K,L ai
-    class M app
-```
+![Zomato AI Data Pipeline](./YouTube%20Trending%20Data%20Pipeline%20Architecture.png)
 
 ## Data Flow
 
