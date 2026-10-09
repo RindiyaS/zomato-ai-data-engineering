@@ -6,7 +6,7 @@ An end-to-end data engineering and AI analytics platform that processes Zomato f
 
 ## Architecture
 
-![AI-Powered Food Delivery Analytics Platform](./Zomato%20AI%20Data%20Engineering%20Architecture.png)
+![AI-Powered Food Delivery Analytics Pipeline](./AI-Powered%20Food%20Delivery%20Analytics%20Pipeline.png)
 
 ## Data Flow
 
